@@ -150,6 +150,41 @@ require_once __DIR__ . '/../includes/header.php';
 <span class="kw">?&gt;</span></pre>
   </div>
 
+  <!-- Formularios -->
+  <div class="card">
+    <div class="card-head">
+      <span class="badge b-green">formularios</span>
+      <h3>$_GET y $_POST</h3>
+    </div>
+    <pre><span class="kw">&lt;?php</span>
+<span class="cm">// Recibir datos de un formulario</span>
+<span class="var">$nombre</span> = <span class="fn">$_POST</span>[<span class="str">'nombre'</span>] ?? <span class="str">'Invitado'</span>;
+<span class="var">$id</span>     = <span class="fn">$_GET</span>[<span class="str">'id'</span>] ?? 0;
+
+<span class="fn">echo</span> <span class="str">"Hola $nombre, el ID es $id"</span>;
+<span class="kw">?&gt;</span></pre>
+    <div class="tip">
+      💡 <code>$_POST</code> es más seguro para enviar contraseñas o datos largos, ya que no se muestran en la URL.
+    </div>
+  </div>
+
+  <!-- Sesiones y Cookies -->
+  <div class="card">
+    <div class="card-head">
+      <span class="badge b-orange">estado</span>
+      <h3>Sesiones y Cookies</h3>
+    </div>
+    <pre><span class="kw">&lt;?php</span>
+<span class="cm">// Sesiones (Se guardan en el servidor)</span>
+<span class="fn">session_start</span>(); 
+<span class="fn">$_SESSION</span>[<span class="str">'user'</span>] = <span class="str">'Alejandro'</span>;
+
+<span class="cm">// Cookies (Se guardan en el navegador del cliente)</span>
+<span class="fn">setcookie</span>(<span class="str">'tema'</span>, <span class="str">'oscuro'</span>, time() + 3600);
+<span class="var">$mi_tema</span> = <span class="fn">$_COOKIE</span>[<span class="str">'tema'</span>] ?? <span class="str">'claro'</span>;
+<span class="kw">?&gt;</span></pre>
+  </div>
+
 </section>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

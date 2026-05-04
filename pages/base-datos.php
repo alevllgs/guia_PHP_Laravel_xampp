@@ -1,8 +1,4 @@
 <?php
-/* =========================================
-   pages/base-datos.php
-   ========================================= */
-
 $page_title = 'Base de datos';
 require_once __DIR__ . '/../includes/header.php';
 ?>
@@ -13,7 +9,15 @@ require_once __DIR__ . '/../includes/header.php';
     <h2 class="section-title">Conectar PHP a MariaDB</h2>
   </div>
 
-  <!-- mysqli -->
+  <div class="card">
+    <div class="card-head">
+      <span class="badge b-amber">phpMyAdmin</span>
+      <h3>Acceder a phpMyAdmin</h3>
+    </div>
+    <p><strong>Pop!_OS:</strong> Abre tu navegador y visita <code>http://localhost/phpmyadmin</code></p>
+    <p><strong>Windows:</strong> Abre <code>http://localhost/phpmyadmin</code> o haz clic en <strong>Admin</strong> en la fila de MySQL del XAMPP Control Panel.</p>
+  </div>
+
   <div class="card">
     <div class="card-head">
       <span class="badge b-orange">mysqli</span>
@@ -35,7 +39,6 @@ require_once __DIR__ . '/../includes/header.php';
 <span class="kw">?&gt;</span></pre>
   </div>
 
-  <!-- PDO -->
   <div class="card">
     <div class="card-head">
       <span class="badge b-blue">PDO</span>
@@ -60,7 +63,6 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
   </div>
 
-  <!-- Query básico -->
   <div class="card">
     <div class="card-head">
       <span class="badge b-green">query</span>

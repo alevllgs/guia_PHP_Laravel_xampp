@@ -2,14 +2,11 @@
    XAMPP Guide — main.js
    ========================================= */
 
-/**
- * Marca el nav-item activo según la URL actual.
- */
 function setActiveNav() {
-    const currentPage = window.location.pathname.split('/').pop();
+    var page = window.location.pathname.split('/').pop();
     document.querySelectorAll('.nav-item').forEach(function(link) {
-        const href = link.getAttribute('href');
-        if (href === currentPage || (currentPage === '' && href === 'index.php')) {
+        var href = link.getAttribute('href');
+        if (href === page || (href && href.endsWith('/' + page)) || (page === '' && href && href.endsWith('index.php'))) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');
@@ -17,60 +14,47 @@ function setActiveNav() {
     });
 }
 
-/**
- * Permite copiar bloques de código al hacer clic.
- */
 function initCopyButtons() {
     document.querySelectorAll('pre').forEach(function(block) {
-        const btn = document.createElement('button');
+        var btn = document.createElement('button');
         btn.textContent = 'Copiar';
         btn.className = 'copy-btn';
-        btn.style.cssText = [
-            'position:absolute', 'top:8px', 'right:8px',
-            'background:rgba(255,255,255,0.07)', 'border:1px solid rgba(255,255,255,0.12)',
-            'color:#888', 'font-size:11px', 'padding:2px 8px',
-            'border-radius:4px', 'cursor:pointer', 'font-family:inherit',
-            'transition:all 0.15s'
-        ].join(';');
-
+        btn.style.cssText = 'position:absolute;top:8px;right:8px;background:var(--copy-btn-bg);border:1px solid var(--copy-btn-border);color:var(--copy-btn-color);font-size:11px;padding:2px 8px;border-radius:4px;cursor:pointer;font-family:inherit;transition:all 0.15s';
         block.style.position = 'relative';
         block.appendChild(btn);
-
         btn.addEventListener('click', function() {
-            const text = block.innerText.replace('Copiar', '').replace('Copiado ✓', '').trim();
+            var clone = block.cloneNode(true);
+            var cb = clone.querySelector('.copy-btn');
+            if (cb) cb.remove();
+            var text = clone.innerText.trim();
             navigator.clipboard.writeText(text).then(function() {
                 btn.textContent = 'Copiado ✓';
-                btn.style.color = '#1D9E75';
+                btn.style.color = 'var(--copy-ok)';
                 setTimeout(function() {
                     btn.textContent = 'Copiar';
-                    btn.style.color = '#888';
+                    btn.style.color = 'var(--copy-btn-color)';
                 }, 2000);
             });
         });
     });
 }
 
-/**
- * Actualiza la hora en el stat card cada segundo si existe.
- */
-function initClock() {
-    const clockEl = document.getElementById('live-clock');
-    if (!clockEl) return;
-
-    function tick() {
-        const now = new Date();
-        const h = String(now.getHours()).padStart(2, '0');
-        const m = String(now.getMinutes()).padStart(2, '0');
-        const s = String(now.getSeconds()).padStart(2, '0');
-        clockEl.textContent = h + ':' + m + ':' + s;
-    }
-    tick();
-    setInterval(tick, 1000);
+function toggleTheme() {
+    var isLight = document.documentElement.classList.toggle('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    var btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = isLight ? '🌙' : '☀️';
 }
 
-/* --- INIT --- */
+function initPreferences() {
+    var theme = localStorage.getItem('theme') || 'dark';
+    if (theme === 'light') document.documentElement.classList.add('light-mode');
+    var btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = theme === 'light' ? '🌙' : '☀️';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     setActiveNav();
     initCopyButtons();
-    initClock();
+    initPreferences();
 });

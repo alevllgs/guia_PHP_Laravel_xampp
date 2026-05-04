@@ -1,8 +1,4 @@
 <?php
-/* =========================================
-   pages/proyectos.php
-   ========================================= */
-
 $page_title = 'Proyectos';
 require_once __DIR__ . '/../includes/header.php';
 
@@ -20,11 +16,10 @@ $urls = [
     <h2 class="section-title">Crear un proyecto PHP</h2>
   </div>
 
-  <!-- Carpeta raíz -->
   <div class="card">
     <div class="card-head">
-      <span class="badge b-green">htdocs</span>
-      <h3>Carpeta raíz de proyectos</h3>
+      <span class="badge b-blue">Pop!_OS</span>
+      <h3>Carpeta raíz en Linux</h3>
     </div>
     <p>Todos tus proyectos van dentro de <code>/opt/lampp/htdocs/</code></p>
     <pre><span class="cm"># Crear carpeta del proyecto</span>
@@ -37,19 +32,30 @@ $urls = [
     </div>
   </div>
 
-  <!-- Primer archivo -->
+  <div class="card">
+    <div class="card-head">
+      <span class="badge b-orange">Windows</span>
+      <h3>Carpeta raíz en Windows</h3>
+    </div>
+    <p>Todos tus proyectos van dentro de <code>C:\xampp\htdocs\</code></p>
+    <pre><span class="cm">:: Crear carpeta del proyecto</span>
+mkdir C:\xampp\htdocs\miproyecto</pre>
+    <div class="tip">
+      💡 No necesitas permisos especiales en Windows, pero ejecuta tu editor como Administrador si tienes problemas al guardar.
+    </div>
+  </div>
+
   <div class="card">
     <div class="card-head">
       <span class="badge b-blue">index.php</span>
       <h3>Primer archivo PHP</h3>
     </div>
     <pre><span class="kw">&lt;?php</span>
-  <span class="fn">echo</span> <span class="str">"Hola desde XAMPP en Pop!_OS"</span>;
+  <span class="fn">echo</span> <span class="str">"Hola desde XAMPP"</span>;
 <span class="kw">?&gt;</span></pre>
-    <p style="margin-top:8px;">Guárdalo en <code>/opt/lampp/htdocs/miproyecto/index.php</code></p>
+    <p>Guárdalo en <code>/opt/lampp/htdocs/miproyecto/index.php</code> <span style="color:var(--muted);">(Linux)</span> o <code>C:\xampp\htdocs\miproyecto\index.php</code> <span style="color:var(--muted);">(Windows)</span></p>
   </div>
 
-  <!-- URLs -->
   <div class="card">
     <div class="card-head">
       <span class="badge b-amber">URLs</span>
@@ -65,7 +71,6 @@ $urls = [
     </div>
   </div>
 
-  <!-- Estructura recomendada -->
   <div class="card">
     <div class="card-head">
       <span class="badge b-orange">estructura</span>

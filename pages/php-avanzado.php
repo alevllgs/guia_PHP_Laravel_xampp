@@ -151,6 +151,29 @@ require_once __DIR__ . '/../includes/header.php';
 <span class="kw">?&gt;</span></pre>
   </div>
 
+  <!-- JSON -->
+  <div class="card">
+    <div class="card-head">
+      <span class="badge b-orange">json</span>
+      <h3>Trabajar con JSON</h3>
+    </div>
+    <pre><span class="kw">&lt;?php</span>
+<span class="var">$usuario</span> = [
+    <span class="str">"nombre"</span> => <span class="str">"Alejandro"</span>,
+    <span class="str">"rol"</span> => <span class="str">"Admin"</span>,
+    <span class="str">"activo"</span> => <span class="kw">true</span>
+];
+
+<span class="cm">// De Array a JSON (para enviar al cliente)</span>
+<span class="var">$json</span> = <span class="fn">json_encode</span>(<span class="var">$usuario</span>);
+<span class="fn">echo</span> <span class="var">$json</span>; <span class="cm">// {"nombre":"Alejandro","rol":"Admin","activo":true}</span>
+
+<span class="cm">// De JSON a Array (para procesar datos recibidos)</span>
+<span class="var">$datos</span> = <span class="fn">json_decode</span>(<span class="var">$json</span>, <span class="kw">true</span>);
+<span class="fn">echo</span> <span class="var">$datos</span>[<span class="str">'nombre'</span>]; <span class="cm">// Alejandro</span>
+<span class="kw">?&gt;</span></pre>
+  </div>
+
 </section>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
